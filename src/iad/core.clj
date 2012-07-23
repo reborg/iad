@@ -3,7 +3,8 @@
         ring.middleware.reload
         ring.middleware.stacktrace
         ring.util.response
-        compojure.core)
+        compojure.core
+        iad.controllers.events-controller)
   (:require [compojure.route :as route])
   (:require [clj-json.core :as json]))
 
@@ -13,9 +14,8 @@
    :body (json/generate-string data)})
 
 (defroutes handler
-    (GET "/" [] (json-response {"hello" "world"}))
-    (PUT "/" [name] (json-response {"hello" name}))
-    (route/not-found "<h1>Page not found</h1>"))
+    (GET "/" [] (json-response (all-events)))
+    (route/not-found (json-response {"endpoint" "not available"})))
 
 (defn -main [& port]
   (run-jetty #'handler {:port (or port 8888) :join? false}))

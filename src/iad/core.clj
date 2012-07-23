@@ -4,14 +4,18 @@
         ring.middleware.stacktrace
         ring.util.response
         compojure.core)
-  (:require [compojure.route :as route]))
+  (:require [compojure.route :as route])
+  (:require [clj-json.core :as json]))
 
-(defn index "Show all events" [req]
-  (response (str "Look ma no wheels")))
+(defn json-response [data & [status]]
+  {:status (or status 200)
+   :headers {"Content-Type" "application/json"}
+   :body (json/generate-string data)})
 
-(defroutes app
-    (GET "/" [] "<h1>Hello World</h1>")
+(defroutes handler
+    (GET "/" [] (json-response {"hello" "world"}))
+    (PUT "/" [name] (json-response {"hello" name}))
     (route/not-found "<h1>Page not found</h1>"))
 
 (defn -main [& port]
-  (run-jetty #'app {:port (or port 8888) :join? false}))
+  (run-jetty #'handler {:port (or port 8888) :join? false}))

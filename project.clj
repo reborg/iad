@@ -7,5 +7,7 @@
   :profiles {:dev {:dependencies [[midje "1.4.0"]]}}
   :main iad.core
   :min-lein-version "2.0.0"
-  :plugins [[lein-midje "1.0.10"]]
+  :plugins [[lein-midje "1.0.10"]
+            [lein-cucumber "1.0.0"]]
+  :cucumber-feature-paths ["test/features/"]
   :description "IAD Conference Rest Server")

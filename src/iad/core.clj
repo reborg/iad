@@ -17,5 +17,15 @@
     (GET "/" [] (json-response (all-events)))
     (route/not-found (json-response {"endpoint" "not available"})))
 
+(defn start [& port]
+  (defonce server (run-jetty #'handler {:port (or port 8888) :join? false})))
+
+(defn stop []
+  (.stop server))
+
+(defn restart []
+  (.stop server) 
+  (.start server))
+
 (defn -main [& port]
   (run-jetty #'handler {:port (or port 8888) :join? false}))

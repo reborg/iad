@@ -4,6 +4,7 @@
                  [ring-json-params "0.1.3"]
                  [clj-json "0.5.1"]
                  [midje "1.4.0"]
+                 [clj-http "0.5.0"]
                  [compojure "1.1.1"]]
   :main iad.core
   :min-lein-version "2.0.0"

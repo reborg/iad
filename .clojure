@@ -3,5 +3,4 @@
 ./src
 ./classes
 ./resources
-./lib/dev/*
-./lib/*
+./target/iad-0.1-standalone.jar

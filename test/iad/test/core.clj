@@ -2,18 +2,14 @@
   (:use [iad.core])
   (:use [midje.sweet]))
 
-(require '[clj-json.core :as json])
 
-(facts "json parsing"
-  (fact "the empty list is a valid json"
-    (json/parse-string "[]") => [])
+(facts "rest functions"
+   (fact "the response is json type"
+    (json-response {"response" "{'myjson': 'this is json'}"}) => {:status 200, :headers {"Content-Type" "application/json"}, :body "{\"response\":\"{'myjson': 'this is json'}\"}"})
 
 
-    (fact "the 3 elements list"
-      (json/parse-string "[1,2,3]") => [1,2,3])
+  (fact "the error response is reported"
+    (json-response {"retry later" "403"} ) => {:status 200, :headers {"Content-Type" "application/json"}, :body "{\"retry later\":\"403\"}"})
 
-  (fact "single event json"
-    (json/parse-string "[{\"id\":1, \"from\":\"2012-11-26\", \"to\": \"2012-11-26\",
-\"name\":\"Italian Agile Day 2012\"}]") =>  [{"id" 1, "from" "2012-11-26", "to" "2012-11-26", "name" "Italian Agile Day 2012"}])
 
   )

@@ -5,3 +5,6 @@
 (facts "there are facts"
        (fact "some of them are true"
              (= "" "") => truthy))
+
+1
+3

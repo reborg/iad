@@ -7,6 +7,7 @@
   :profiles {:dev {:dependencies [[midje "1.4.0"]
                                   [clj-http "0.5.0"]]}}
   :main iad.core
+  :source-paths ["src","config"]
   :min-lein-version "2.0.0"
   :plugins [[lein-midje "2.0.0-SNAPSHOT"]
             [lein-cucumber "1.0.0"]]

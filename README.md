@@ -32,6 +32,13 @@ lein run
 
     curl -v -H "Content-Type: application/json" -X PUT -d '{"title":"change","description":"change","category":"my","active":"true"}' http://localhost:8080/events/1
 
+## Development
+
+* Vimclojure .clojure ng-server classpath generation:
+
+    lein classpath > .clojure
+    (in vim) :%s/\:/\r/g
+
 ## License
 
 Copyright (C) 2012 The @reborg @ramptop collective

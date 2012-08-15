@@ -5,6 +5,11 @@
                  [clj-json "0.5.1"]
                  [org.clojure/java.jdbc "0.2.3"]
                  [com.h2database/h2 "1.3.168"]
+                 [log4j/log4j "1.2.17" :exclusions [javax.mail/mail
+                                                    javax.jms/jms
+                                                    com.sun.jdmk/jmxtools
+                                                    com.sun.jmx/jmxri]]
+                 [org.clojure/tools.logging "0.2.3"]
                  [compojure "1.1.1"]]
   :profiles {:dev {:dependencies [[midje "1.4.0"]
                                   [clj-http "0.5.0"]]}}

@@ -2,10 +2,12 @@
 (require '[clj-http.client :as client])
 (require '[clj-json.core :as json])
 (require '[clojure.java.jdbc :as sql]) 
+(use '[clojure.tools.logging :only [info error]])
 
 (Before [] 
         (do
           (println "Starting iad embedded Jetty")
+          (info "Starting Iad server")
           (iad/start)
           (let [iad-test {:classname   "org.h2.Driver"
                           :subprotocol "h2:file"

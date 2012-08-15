@@ -3,6 +3,8 @@
                  [ring "1.1.1"]
                  [ring-json-params "0.1.3"]
                  [clj-json "0.5.1"]
+                 [org.clojure/java.jdbc "0.2.3"]
+                 [com.h2database/h2 "1.3.168"]
                  [compojure "1.1.1"]]
   :profiles {:dev {:dependencies [[midje "1.4.0"]
                                   [clj-http "0.5.0"]]}}

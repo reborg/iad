@@ -3,8 +3,8 @@
 
 (defn all-events []
   (let [iad-test {:classname   "org.h2.Driver"
-                  :subprotocol "h2:file"
-                  :subname     (str (System/getProperty "user.dir") "/db/" "iad-test")
+                  :subprotocol "h2:mem"
+                  :subname     "test"
                   :user        "sa"
                   :password    ""}]
     (sql/with-connection iad-test 

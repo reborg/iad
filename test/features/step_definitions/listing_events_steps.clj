@@ -2,29 +2,29 @@
 (require '[clj-http.client :as client])
 (require '[clj-json.core :as json])
 (require '[clojure.java.jdbc :as sql]) 
-(use '[clojure.tools.logging :only [info error]])
+(use '[clojure.tools.logging :only [warn error]])
 
 (Before [] 
         (do
-          (println "Starting iad embedded Jetty")
-          (info "Starting Iad server")
-          (iad/start)
-          (let [iad-test {:classname   "org.h2.Driver"
-                          :subprotocol "h2:file"
-                          :subname     (str (System/getProperty "user.dir") "/db/" "iad-test")
-                          :user        "sa"
-                          :password    ""}]
-            (sql/with-connection iad-test 
-              (sql/drop-table :EVENT)))))
+          (warn "Starting Iad server")
+          (iad/start)))
+;          (let [iad-test {:classname   "org.h2.Driver"
+;                          :subprotocol "h2:file"
+;                          :subname     (str (System/getProperty "user.dir") "/db/" "iad-test")
+;                          :user        "sa"
+;                          :password    ""}]
+;            (sql/with-connection iad-test 
+;              (sql/drop-table :EVENT)))))
 
 (def events (atom {}))
 
 (Given #"^the conference is still far away in the future$" []
+       (warn "step the conference is still running")
        (let [iad-test {:classname   "org.h2.Driver"
-                      :subprotocol "h2:file"
-                      :subname     (str (System/getProperty "user.dir") "/db/" "iad-test")
-                      :user        "sa"
-                      :password    ""}]
+                       :subprotocol "h2:mem"
+                       :subname     "test;DB_CLOSE_DELAY=-1"
+                       :user        "sa"
+                       :password    ""}]
          (sql/with-connection iad-test 
            (sql/create-table :EVENT
                          [:id "identity"]

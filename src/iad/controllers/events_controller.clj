@@ -9,4 +9,4 @@
                   :password    ""}]
     (sql/with-connection iad-test 
       (sql/with-query-results rs ["select * from event"]
-        rs))))
+        (into [] rs)))))

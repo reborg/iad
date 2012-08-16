@@ -2,7 +2,6 @@
   (:use [iad.core])
   (:use [midje.sweet]))
 
-
 (require '[clj-json.core :as json])
 
 (facts "json parsing"

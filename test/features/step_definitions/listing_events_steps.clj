@@ -33,7 +33,7 @@
                          [:schedule "timestamp"]
                          [:length "int"]
                          [:active "boolean"]
-                         [:abstract "clob"])
+                         [:abstract "varchar(600)"])
            (sql/insert-records :event
               {:title "agile development with clojure" 
                :author "ramborg" 

@@ -5,6 +5,7 @@
         ring.util.response
         compojure.core
         iad.controllers.events-controller)
+  (:use [clojure.tools.logging :only (info error)])
   (:require [compojure.route :as route])
   (:require [clj-json.core :as json]))
 

@@ -1,5 +1,7 @@
-(ns iad.controllers.events-controller)
-(require '[clojure.java.jdbc :as sql]) 
+(ns iad.controllers.events-controller
+  (:use [clojure.tools.logging :only (info error)])
+  (:require [clojure.java.jdbc :as sql]))
+
 
 (defn all-events []
   (let [iad-test {:classname   "org.h2.Driver"
@@ -8,5 +10,5 @@
                   :user        "sa"
                   :password    ""}]
     (sql/with-connection iad-test 
-      (sql/with-query-results rs ["select * from event"]
-        (into [] rs)))))
+      (sql/with-query-results rs ["select * from event"] 
+        (map #(assoc % :schedule (. (% :schedule) toString)) (doall rs))))))

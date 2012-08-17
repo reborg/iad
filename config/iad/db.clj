@@ -3,7 +3,7 @@
   (:require [clojure.java.jdbc :as sql]) 
   (:use [iad.config.environment]))
 
-(def iad-db-env {"dev" {:classname   "org.h2.Driver"
+(defn iad [] ({"dev" {:classname   "org.h2.Driver"
                         :subprotocol "h2:mem"
                         :subname     "dev;DB_CLOSE_DELAY=-1"
                         :user        "sa"
@@ -17,7 +17,7 @@
                          :subprotocol "h2:mem"
                          :subname     "prod;DB_CLOSE_DELAY=-1"
                          :user        "sa"
-                         :password    ""}})
+                         :password    ""}} (. System getProperty "IAD_ENV")))
 
 (def event-schema [:event 
                    [:id "identity"]
@@ -37,5 +37,5 @@
 ;               :abstract "why clojure should be agile?"}))))
 
 (defn migrate []
-  (sql/with-connection (iad-db-env (. System getProperty "IAD_ENV"))
+  (sql/with-connection (iad)
     (apply sql/create-table event-schema)))

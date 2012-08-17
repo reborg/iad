@@ -6,6 +6,7 @@
 
 (Before [] 
         (do
+          (System/setProperty "IAD_ENV", "test")
           (warn "Starting Iad server")
           (iad/start)))
 

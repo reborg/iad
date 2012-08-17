@@ -1,13 +1,14 @@
 # Italian Agile Day conference REST server
-
 Borrowing inspiration from the [Devoxx Schedule Rest Inerface](http://www.devoxx.com/display/Devoxx2K10/Schedule+REST+interface), this is the preliminary version of the Italian Agile Day 2012 conference rest server. 
 
-## Start the server
+## Sanity checks
+* lein midje
+* lein cucumber
 
+## Start the server
 lein run
 
 ## API
-
 * Create an event:
 
     curl -v -H "Content-Type: application/json" -X POST -d '{"title":"whoa","description":"ops","category":"my","active":"true"}' http://localhost:8080/events
@@ -33,14 +34,11 @@ lein run
     curl -v -H "Content-Type: application/json" -X PUT -d '{"title":"change","description":"change","category":"my","active":"true"}' http://localhost:8080/events/1
 
 ## Development
-
 * Vimclojure .clojure ng-server classpath generation:
 
     lein classpath > .clojure
     (in vim) :%s/\:/\r/g
 
 ## License
-
 Copyright (C) 2012 The @reborg @ramptop collective
-
 Distributed under the Eclipse Public License, the same as Clojure.

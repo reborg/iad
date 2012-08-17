@@ -6,4 +6,4 @@ Feature: Listing events
   Scenario: there are no events
     Given the conference is still far away in the future
     When I request the list of the events
-    #Then the list of events is empty
+    Then the list of events is empty

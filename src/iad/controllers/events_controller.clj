@@ -3,3 +3,9 @@
 
 (defn all-events []
   (event/all))
+
+(defn single-event [eventid]
+  (event/single eventid))
+
+(defn all-event-presentations [eventid]
+  (event/all))

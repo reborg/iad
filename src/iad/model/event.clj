@@ -8,3 +8,7 @@
 (defn all []
   (sql/with-connection (db/iad)
     (sql/with-query-results rs ["select * from event"] (schedule-to-string (doall rs)))))
+
+(defn single [eventid]
+  (sql/with-connection (db/iad)
+    (sql/with-query-results rs ["select * from event where id=?" eventid] (schedule-to-string (doall rs)))))

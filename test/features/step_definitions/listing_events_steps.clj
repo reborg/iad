@@ -16,7 +16,7 @@
   (db/migrate))
 
 (When #"^I request the list of the events$" []
-  (let [raw-json-events ((client/get "http://localhost:8888/") :body)
+  (let [raw-json-events ((client/get "http://localhost:8888/events") :body)
         json-events (json/parse-string raw-json-events)
         event-count (count json-events)]
     (if-not (= 0 event-count) (swap! events #(apply conj % json-events)))))
@@ -25,6 +25,10 @@
       (let [howmany (count @events)
             msg (str howmany " expected and got " howmany " instead")]
         (assert (= howmany 0) msg)))
+
+(Given #"^the conference is ready$" []
+  (db/migrate))
+
 
 (After [] (do
             (warn "Stopping iad embedded Jetty")

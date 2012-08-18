@@ -1,5 +1,6 @@
 (ns iad.controllers.events-controller
-  (:require [iad.model.event :as event]))
+  (:require [iad.model.event :as event])
+  (:require [iad.model.presentation :as presentation]))
 
 (defn all-events []
   (event/all))
@@ -8,4 +9,4 @@
   (event/single eventid))
 
 (defn all-event-presentations [eventid]
-  (event/all))
+  (presentation/all eventid))

@@ -28,6 +28,21 @@
                    [:active "boolean"]
                    [:abstract "varchar(600)"]])
 
+
+(def presentation-schema [:presentation
+                   [:id "identity"]
+                   [:title "varchar(255)"]
+                   [:speaker "varchar(90)"]
+                   [:eventid "int"]
+                   [:active "boolean"]
+                   [:summary "varchar(600)"]
+                   [:track "varchar(255)"]
+                   [:room "varchar(255)"]
+                   [:experience "varchar(90)"]
+                   [:language "varchar(2)"]
+                   ])
+
+
 ;           (sql/insert-records :event
 ;              {:title "agile development with clojure" 
 ;               :author "ramborg" 
@@ -38,4 +53,5 @@
 
 (defn migrate []
   (sql/with-connection (iad)
-    (apply sql/create-table event-schema)))
+    (apply sql/create-table event-schema)
+    (apply sql/create-table presentation-schema)))

@@ -16,7 +16,7 @@
 
 (defroutes handler
     (GET "/events" [] (json-response (all-events)))
-    (GET "/events/:eventid" [eventid] (json-response (single-event)))
+    (GET "/events/:eventid" [eventid] (json-response (single-event eventid)))
     (GET "/events/:eventid/presentations" [eventid] (str "<html><body><h1>Hello user " eventid "</h1></body></html>"))
     (route/not-found (json-response {"response" "endpoint not available"})))
 

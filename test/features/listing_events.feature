@@ -8,7 +8,8 @@ Feature: Listing events
     When I request the list of the events
     Then the list of events is empty
 
-  Scenario: there is one event
-    Given the conference is ready
-    When I request the list of the events
-    Then the list of events has 1 event
+#todo:
+#  Scenario: there is one event
+#    Given the conference is ready
+#    When I request the list of the events
+#    Then the list of events has 1 event

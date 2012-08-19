@@ -19,14 +19,16 @@
                          :user        "sa"
                          :password    ""}} (. System getProperty "IAD_ENV")))
 
+
+;todo: should be "from" not from_date but from is a reserved word in sql
 (def event-schema [:event 
                    [:id "identity"]
-                   [:title "varchar(255)"]
-                   [:author "varchar(90)"]
-                   [:schedule "timestamp"]
-                   [:length "int"]
-                   [:active "boolean"]
-                   [:abstract "varchar(600)"]])
+                   [:name "varchar(50)"]
+                   [:description "varchar(255)"]
+                   [:from_date "timestamp"]
+                   [:to "timestamp"]
+                   [:location "varchar(90)"]
+                   ])
 
 
 (def presentation-schema [:presentation

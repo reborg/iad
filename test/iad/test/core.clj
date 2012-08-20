@@ -5,9 +5,6 @@
 
 (background (before :facts (test-setup)))
 
-(fact "sanity"
-      (. System getProperty "IAD_ENV") => "test")
-
 (facts "rest functions"
 
        (fact "the response is json type"

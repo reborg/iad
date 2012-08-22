@@ -2,18 +2,20 @@
 (require '[iad.db :as db])
 (require '[clj-http.client :as client])
 (require '[clj-json.core :as json])
-(use '[clojure.tools.logging :only [info warn error]])
-
-(Before [] 
-        (do
-          (System/setProperty "IAD_ENV", "test")
-          (warn "Starting Iad server")
-          (iad/start)))
+(require '[iad.model.event :as event])
+(use '[clojure.tools.logging :only [info warn error spy]])
 
 (def events (atom []))
+(def iad-server (atom (iad/start)))
+(System/setProperty "IAD_ENV", "test")
 
-(Given #"^the conference is still far away in the future$" []
-  (db/migrate))
+(Before [] (db/migrate))
+
+(defn assert-count [expected actual]
+  (let [msg (str expected " expected and got " actual " instead")]
+    (assert (= (str actual) (str expected)) msg)))
+
+(Given #"^the conference is still far away in the future$" [] )
 
 (When #"^I request the list of the events$" []
   (let [raw-json-events ((client/get "http://localhost:8888/") :body)
@@ -22,10 +24,19 @@
     (if-not (= 0 event-count) (swap! events #(apply conj % json-events)))))
     
 (Then #"^the list of events is empty$" []
-      (let [howmany (count @events)
-            msg (str howmany " expected and got " howmany " instead")]
-        (assert (= howmany 0) msg)))
+      (let [howmany (count @events)]
+        (assert-count 0 howmany)))
 
-(After [] (do
-            (warn "Stopping iad embedded Jetty")
-            (iad/stop)))
+(Given #"^the keynote was confirmed$" []
+       (event/create {:title "the recurring keynote" 
+                      :author "ramborg" 
+                      :schedule "2012-11-24 09:30:00"
+                      :length "45"
+                      :active true
+                      :abstract "key? note?"}))
+
+(Then #"^there is \"([^\"]*)\" event$" [expected-events]
+      (let [howmany (count @events)]
+        (assert-count expected-events howmany)))
+
+(After [] (db/drop-tables))

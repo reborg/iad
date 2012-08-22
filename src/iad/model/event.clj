@@ -8,3 +8,7 @@
 (defn all []
   (sql/with-connection (db/iad)
     (sql/with-query-results rs ["select * from event"] (schedule-to-string (doall rs)))))
+
+(defn create [event]
+  (sql/with-connection (db/iad) 
+    (sql/insert-records :event event)))

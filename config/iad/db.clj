@@ -20,14 +20,10 @@
                    [:active "boolean"]
                    [:abstract "varchar(600)"]])
 
-;           (sql/insert-records :event
-;              {:title "agile development with clojure" 
-;               :author "ramborg" 
-;               :schedule "2012-11-24 09:30:00"
-;               :length "45"
-;               :active true
-;               :abstract "why clojure should be agile?"}))))
-
 (defn migrate []
   (sql/with-connection (iad)
     (apply sql/create-table event-schema)))
+
+(defn drop-tables []
+  (sql/with-connection (iad)
+    (sql/drop-table :event)))

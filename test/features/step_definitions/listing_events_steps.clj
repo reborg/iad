@@ -18,7 +18,7 @@
 (Given #"^the conference is still far away in the future$" [] )
 
 (When #"^I request the list of the events$" []
-  (let [raw-json-events ((client/get "http://localhost:8888/") :body)
+  (let [raw-json-events ((client/get "http://localhost:8888/events") :body)
         json-events (json/parse-string raw-json-events)
         event-count (count json-events)]
     (if-not (= 0 event-count) (swap! events #(apply conj % json-events)))))

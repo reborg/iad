@@ -11,9 +11,8 @@
        (fact "an id is automatically assigned" (:id (first (event/all))) => 1)
        (against-background 
          (before :checks 
-                 (event/create {:title "agile development with clojure" 
-                                :author "ramborg" 
-                                :schedule "2012-11-24 09:30:00"
-                                :length "45"
-                                :active true
-                                :abstract "why clojure should be agile?"}))))
+                 (event/create {:name "agile development with clojure" 
+                                :from_date "2012-11-24 09:30:00"
+                                :to "2012-11-24 11:30:00"
+                                :location "ballroom"
+                                :description "why clojure should be agile?"}))))

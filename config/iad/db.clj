@@ -35,8 +35,8 @@
 
 (defn migrate []
   (sql/with-connection (iad)
-    (apply sql/create-table event-schema))
-    (apply sql/create-table presentation-schema))
+    (apply sql/create-table event-schema)
+    (apply sql/create-table presentation-schema)))
 
 (defn drop-tables []
   (sql/with-connection (iad)

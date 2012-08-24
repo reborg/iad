@@ -2,8 +2,8 @@
 
 (def dev-db
   {:classname   "org.h2.Driver"
-   :subprotocol "h2:mem"
-   :subname     "dev;DB_CLOSE_DELAY=-1"
+   :subprotocol "h2:file"
+   :subname     (str (System/getProperty "user.dir") "/db/iad-dev;DB_CLOSE_DELAY=-1")
    :user        "sa"
    :password    ""})
 

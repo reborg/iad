@@ -40,5 +40,7 @@
 
 (defn drop-tables []
   (sql/with-connection (iad)
-    (sql/drop-table :event)
-    (sql/drop-table :presentation)))
+    (try
+      (sql/drop-table :event)
+      (sql/drop-table :presentation)
+     (catch Exception _))))

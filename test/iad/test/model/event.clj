@@ -4,6 +4,7 @@
   (:require [iad.db :as db])
   (:use [midje.sweet]))
 
+(against-background [(before :contents (db/drop-tables))]) 
 (against-background [(before :contents (db/migrate))]) 
 
 (facts "creating new events"

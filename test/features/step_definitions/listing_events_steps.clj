@@ -27,13 +27,14 @@
 (Then #"^the list of events is empty$" []
   (let [howmany (count @events)]
     (assert-count 0 howmany)))
-
+;
 ;(Given #"^the keynote was confirmed$" []
 ;       (event/create {:name "agile development with clojure"
 ;                      :from_date "2012-11-24 09:30:00"
 ;                      :to "2012-11-24 11:30:00"
 ;                      :location "ballroom"
 ;                      :description "why clojure should be agile?"}))
+
 (Given #"^the keynote was confirmed$" []
   (sample/simple-event))
 

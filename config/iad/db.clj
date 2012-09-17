@@ -44,3 +44,8 @@
       (sql/drop-table :event)
       (sql/drop-table :presentation)
      (catch Exception _))))
+
+
+
+
+

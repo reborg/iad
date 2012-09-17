@@ -13,5 +13,5 @@
 (defn single [presentationid]
   (sql/with-connection (db/iad)
     (sql/with-query-results rs ["select * from presentation where id=?" presentationid]
-      (doall rs))))
+      (first (doall rs)))))
 

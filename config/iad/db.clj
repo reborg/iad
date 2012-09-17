@@ -24,7 +24,7 @@
                           [:id "identity"]
                           [:title "varchar(255)"]
                           [:speaker "varchar(90)"]
-                          [:eventid "int"]
+                          [:eventid "integer"]
                           [:active "boolean"]
                           [:summary "varchar(600)"]
                           [:track "varchar(255)"]

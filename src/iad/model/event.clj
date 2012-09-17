@@ -27,5 +27,5 @@
 
 (defn single [eventid]
   (sql/with-connection (db/iad)
-    (sql/with-query-results rs ["select * from event where id=?" eventid] 
+    (sql/with-query-results rs ["select * from event where id=?" eventid]
       (all-dates-to-string (doall rs)))))

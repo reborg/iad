@@ -8,7 +8,7 @@
   (:use [clojure.tools.logging :only (info error)])
   (:require [compojure.route :as route])
   (:require [iad.db :as db])
-  (:require [iad.model.event :as event])
+  (:require [iad.seed :as seed])
   (:require [clj-json.core :as json]))
 
 (defn json-response [data & [status]]
@@ -35,17 +35,10 @@
 (defn get-env []
   ((fnil identity "dev") (. System getProperty "IAD_ENV")))
 
-(defn sample []
-  (event/create {:name "IAD" 
-                 :from_date "2012-11-24 09:30:00"
-                 :to "2012-11-24 18:30:00"
-                 :location "Milano"
-                 :description "The Italian Agile Day"}))
-
 (defn -main [& port]
   (do
     (info (str "Starting IAD server in " (get-env) " environment"))
     (db/drop-tables)
     (db/migrate)
-    (sample)
+    (seed/all)
     (run-jetty #'handler {:port (or port 8888) :join? false})))

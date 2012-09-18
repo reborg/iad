@@ -17,8 +17,9 @@
   :source-paths ["src","config"]
   :min-lein-version "2.0.0"
   :plugins [[lein-midje "2.0.0-SNAPSHOT"]
-            [lein-cucumber "1.0.0"]]
+            [lein-cucumber "1.0.0"]
+            [lein-db "0.1.0"]]
   :cucumber-feature-paths ["test/features/"]
   :repositories {"ibiblio" "http://mirrors.ibiblio.org/pub/mirrors/maven2/"
-                "clojars.org" "http://clojars.org/repo"}
+                 "clojars.org" "http://clojars.org/repo"}
   :description "IAD Conference Rest Server")

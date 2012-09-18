@@ -10,3 +10,6 @@
 
 (defn all-event-presentations [eventid]
   (presentation/all eventid))
+
+(defn single-presentation [presentationid]
+  (presentation/single presentationid))

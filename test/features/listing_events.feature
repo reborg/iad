@@ -11,4 +11,4 @@ Feature: Listing events
   Scenario: the key note was confirmed and there is an event
     Given the keynote was confirmed
     When I request the list of the events
-    Then there is "1" event
+    Then there is "2" event

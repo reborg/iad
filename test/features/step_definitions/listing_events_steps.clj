@@ -3,7 +3,7 @@
 (require '[clj-http.client :as client])
 (require '[clj-json.core :as json])
 (require '[iad.model.event :as event])
-(require '[iad.seeddata.sample :as sample])
+(require '[iad.seed :as seed])
 (use '[clojure.tools.logging :only [info warn error spy]])
 
 (def events (atom []))
@@ -27,16 +27,9 @@
 (Then #"^the list of events is empty$" []
   (let [howmany (count @events)]
     (assert-count 0 howmany)))
-;
-;(Given #"^the keynote was confirmed$" []
-;       (event/create {:name "agile development with clojure"
-;                      :from_date "2012-11-24 09:30:00"
-;                      :to "2012-11-24 11:30:00"
-;                      :location "ballroom"
-;                      :description "why clojure should be agile?"}))
 
 (Given #"^the keynote was confirmed$" []
-  (sample/simple-event))
+  (seed/all))
 
 (Then #"^there is \"([^\"]*)\" event$" [expected-events]
   (let [howmany (count @events)]

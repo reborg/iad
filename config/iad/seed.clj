@@ -1,5 +1,6 @@
 (ns iad.seed
-  (:require [iad.model.event :as event]))
+  (:require [iad.model.event :as event]
+            [iad.model.presentation :as presentation]))
 
 (defn events []
   (do
@@ -14,6 +15,13 @@
                    :location "Venice"
                    :description "The Italian Agile Day in Venice"})))
 
+(defn presentations []
+  (presentation/create {:room "big room"
+                        :eventid 1
+                        :speaker "Uberto Barbini"
+                        :title "Clojure rest server"
+                        :summary "Blablabla"}))
 (defn all []
   (do
-    (events)))
+    (events)
+    (presentations)))

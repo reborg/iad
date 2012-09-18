@@ -6,13 +6,8 @@
         compojure.core
         iad.controllers.events-controller)
   (:use [clojure.tools.logging :only (info error)])
-  (:require [compojure.route :as route])
-  (:require [iad.db :as db])
-  (:require [iad.seed :as seed])
-  (:require [iad.seeddata.sample :as sample])
-  (:require [iad.model.event :as event])
-  (:require [iad.model.presentation :as presentation])
-  (:require [clj-json.core :as json]))
+  (:require [compojure.route :as route]
+            [clj-json.core :as json]))
 
 (defn json-response [data & [status]]
   {:status (or status 200)
@@ -42,8 +37,4 @@
 (defn -main [& port]
   (do
     (info (str "Starting IAD server in " (get-env) " environment"))
-    (db/drop-tables)
-    (db/migrate)
-    (seed/all)
-    (sample/simple-event)
     (run-jetty #'handler {:port (or port 8888) :join? false})))

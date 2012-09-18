@@ -8,18 +8,12 @@
 (def iad-server (atom (iad/start)))
 (System/setProperty "IAD_ENV", "test")
 
-
 (When #"^I request the list of presentations of the event \"([^\"]*)\"$" [eventid]
-(comment  Express the Regexp above with the code you wish you had  )
   (let [raw-json-presentations ((client/get "http://localhost:8888/events/1/presentations") :body)
         json-presentations (json/parse-string raw-json-presentations)
         presentations-count (count json-presentations)]
     (if-not (= 0 presentations-count) (swap! presentations #(apply conj % json-presentations)))))
 
-
 (Then #"^there is \"([^\"]*)\" presentation$" [expected-presentations]
-  (comment  Express the Regexp above with the code you wish you had  )
-  (let [howmany (count @presentations)]
-    (assert-count expected-presentations howmany)))
-
-
+      (let [howmany (count @presentations)]
+        (assert-count expected-presentations howmany)))

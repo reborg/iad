@@ -1,7 +1,9 @@
 Feature: Event presentations
-  The IAD rest server can list all the presentations for a given event.
+  The IAD rest server can list all the presentations for a given event
 
-  Scenario: the key note was confirmed and there is an event
-    Given the keynote was confirmed
-    When I request the list of presentations of the event "1"
-    Then there is "1" presentation
+  Scenario: schedule is finalized
+    Given the "iad" event schedule was finalized
+    And the talk "better agile less fragile" was confirmed for "iad"
+    And the talk "introducting agile" was confirmed for "iad"
+    When I request the list of presentations for "iad"
+    Then there are "2" presentations
